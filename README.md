@@ -1,6 +1,6 @@
 # Godel technologies - QUIZ
 
-https://felcilive.github.io/quiz/index
+https://felcilive.github.io/dist/quiz/index
 
 # Викторина
 
