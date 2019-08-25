@@ -1,0 +1,59 @@
+* {
+  font-family: 'Bad Script', cursive;
+}
+
+button {
+  font-family: 'Bad Script', cursive;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 4rem;
+  font-size: 1.2rem;
+  border: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+input {
+  display: none;
+}
+
+.gradient {
+  background: linear-gradient(to bottom right, rgb(177, 122, 240), rgb(242, 236, 248), rgb(180, 156, 207), rgb(178, 116, 250));
+}
+
+.gradient-focus:hover {
+  background: linear-gradient(to bottom right, rgb(177, 122, 240), rgb(242, 236, 248), rgb(153, 82, 233), rgb(119, 14, 240));
+}
+
+.quiz__card {
+  width: 100%;
+  margin: 0 auto;
+  min-height: 20rem;
+}
+.quiz__score {
+  font-size: 1.7rem;
+  background: linear-gradient(to bottom right, rgb(177, 122, 240), rgb(242, 236, 248), rgb(153, 82, 233), rgb(119, 14, 240));
+  text-align: center;
+  width: 100%;
+  padding: 2rem 0 2rem 0;
+  font-weight: bold;
+}
+
+.quiz__answers__elem {
+  display: block;
+  min-height: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.6em;
+  text-align: center;
+  padding: 0.5rem 1rem 0.25rem 1rem;
+}
+
+.quiz__question {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 2rem;
+}

@@ -1,0 +1,55 @@
+@media only screen and (max-width: 600px) {
+  .quiz__answers__elem {
+    font-size: 0.4rem;
+  }
+
+  .quiz__question {
+    font-size: 0.3rem;
+    margin: 0.2rem;
+  }
+
+  .quiz__score {
+    font-size: 0.5rem;
+  }
+}
+
+@media only screen and (min-width: 360px) {
+  .quiz__card {
+    min-height: 2rem;
+  }
+
+  .quiz__answers__elem {
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem;
+    min-height: 2rem;
+  }
+
+  .quiz__question {
+    font-size: 0.9rem;
+    margin: 1rem;
+  }
+
+  .quiz__score {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (min-width: 300px) {
+  .quiz__card {
+    min-height: 2rem;
+  }
+
+  .quiz__answers__elem {
+    font-size: 1.3rem;
+    padding: 1rem 0.5rem;
+    min-height: 4rem;
+  }
+
+  .quiz__question {
+    font-size: 1.2rem;
+    margin: 1rem;
+  }
+  .quiz__score {
+    font-size: 1.4rem;
+  }
+}
