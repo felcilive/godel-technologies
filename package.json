@@ -2,10 +2,11 @@
   "name": "godel-technologies",
   "version": "1.0.0",
   "description": "https://felcilive.github.io/quiz/index",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development --watch",
     "build": "webpack --mode production",
+    "start": "http-server dist",
     "lint": "eslint src/"
   },
   "repository": {

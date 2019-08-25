@@ -5,47 +5,44 @@ import QuizView from '../view/QuizView';
 
 class QuizModel {
   constructor() {
-    this.randomIndexForQuestion = null;
+    this.indexForCurrentQuestion = null;
     this.correctAnswer = null;
     this.data = data;
     this.score = 0;
     this.amountOfQuestions = this.data.length - 1;
     this.answersHasListener = false;
-    this.mixDataQuiz = [];
+    this.resultArray = [];
   }
 
   getCurrentQuizCard() {
-    this.randomIndexForQuestion = Utils.getRandomInt(0, this.data.length - 1);
-    const currentQuizCard = this.data[this.randomIndexForQuestion];
+    this.indexForCurrentQuestion = Utils.getRandomInt(0, this.data.length - 1);
+    const currentQuizCard = this.data[this.indexForCurrentQuestion];
     this.correctAnswer = currentQuizCard.correctAnswer;
     return currentQuizCard;
   }
 
-  scoreCounter(e) {
-    const answerOfClient = e.target.value;
+  scoreCounter(answerOfClient) {
     if (answerOfClient === this.correctAnswer) {
       this.score += 1;
     }
   }
 
   initListenerAnswers() {
-    const input = document.getElementsByTagName('input');
-    const arr = [...input];
-    arr.map((item) => item.addEventListener('click', this.runNextQuestionCard.bind(this), false));
+    const answers = [...document.getElementsByTagName('input')];
+    answers.map((item) => item.addEventListener('click', this.runNextQuestionCard.bind(this), false));
     this.answersHasListener = true;
   }
 
   removeAnswersListenerIfTheyHave() {
     if (this.answersHasListener) {
-      const input = document.getElementsByTagName('input');
-      const arr = [...input];
-      arr.map((item) => item.removeEventListener('click', this.runNextQuestionCard.bind(this), false));
+      const answers = [...document.getElementsByTagName('input')];
+      answers.map((item) => item.removeEventListener('click', this.runNextQuestionCard.bind(this), false));
       this.answersHasListener = false;
     }
   }
 
   markAnsweredQuestion() {
-    this.data.splice(this.randomIndexForQuestion, 1);
+    this.data.splice(this.indexForCurrentQuestion, 1);
   }
 
   checkKnowledge() {
@@ -76,14 +73,14 @@ class QuizModel {
     const unansweredQestions = this.data.length;
     if (unansweredQestions === 0) {
       this.removeAnswersListenerIfTheyHave();
-      this.mixDataQuiz.pop();
+      this.resultArray.pop();
       return true;
     }
     return false;
   }
 
-  copyMixDataQuiz(question, answers) {
-    this.mixDataQuiz.push({
+  copyResultArray(question, answers) {
+    this.resultArray.push({
       question,
       answers,
       correctAnswer: this.correctAnswer,
@@ -91,17 +88,14 @@ class QuizModel {
   }
 
   runNextQuestionCard(e) {
-    this.scoreCounter(e);
+    this.scoreCounter(e.target.value);
     const currentQuizCard = this.getCurrentQuizCard();
     const answers = Utils.mixArray(currentQuizCard.answers);
-    const quizView = new QuizView(this.mixDataQuiz);
-
-    this.copyMixDataQuiz(currentQuizCard.question, answers);
-
+    this.copyResultArray(currentQuizCard.question, answers);
+    const quizView = new QuizView(this.resultArray);
     quizView.drawQuizCard(currentQuizCard.question, answers);
     this.initListenerAnswers();
     this.markAnsweredQuestion();
-
     if (this.allQuestionIsAnswered()) {
       const mark = this.checkKnowledge();
       quizView.gameOver(this.score, mark, this.amountOfQuestions);
