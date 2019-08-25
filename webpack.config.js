@@ -1,12 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: './src/app.js',
   output: {
     filename: 'app.bundle.js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  devServer: {
+    writeToDisk: true,
   },
   devtool: 'source-map',
   module: {
@@ -37,5 +41,9 @@ module.exports = {
       filename: 'index.html',
     }),
     new ExtractTextPlugin({ filename: 'style.css' }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+    }),
   ],
 };
